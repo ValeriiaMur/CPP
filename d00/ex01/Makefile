@@ -5,25 +5,29 @@
 #                                                     +:+ +:+         +:+      #
 #    By: valeriiamuradian <valeriiamuradian@stud    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/10/19 13:05:00 by valeriiamur       #+#    #+#              #
-#    Updated: 2019/10/21 09:14:01 by valeriiamur      ###   ########.fr        #
+#    Created: 2019/10/19 13:05:37 by valeriiamur       #+#    #+#              #
+#    Updated: 2019/10/21 21:17:53 by valeriiamur      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= Megaphone
+NAME	= awesome_phonebook
 
-SRC		=  megaphone.cpp
-CFLAG	=  -Wall -Wextra -Wunused -Werror
+SRCS     = Contact.Class.cpp AddContact.cpp ShowContact.cpp main.cpp 
+HDRS     = Contact.Class.hpp
+OBJS     = $(SRCS:.cpp=.o)
+FLAGS 	 = -Wall -Wextra -Wunused -Werror
+
 
 all: $(NAME)
-
-$(NAME):
-	g++ $(CFLAG) $(SRC) -o $(NAME)
+$(NAME): $(OBJS) $(HDRS)
+	g++ $(FLAGS) $(OBJS) -o $(NAME)
 
 clean:
+	@rm -f $(OBJS)
+	@echo "All Objects removed!"
 
 fclean: clean
-	/bin/rm -f $(NAME)
-	@echo "Clean!"
+	@rm -f $(NAME)
+	@echo "$(NAME) also removed!"
 
 re:     fclean all
